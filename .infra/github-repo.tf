@@ -21,3 +21,13 @@ resource "github_actions_secret" "secret" {
   secret_name     = each.key
   plaintext_value = each.value
 }
+
+resource "github_actions_variable" "variable" {
+  for_each = {
+    "TURBO_CACHE_WORKER_NAME" = var.turbo_cache_worker_name
+  }
+
+  repository      = github_repository.monorepo.name
+  variable_name   = each.key
+  value           = each.value
+}

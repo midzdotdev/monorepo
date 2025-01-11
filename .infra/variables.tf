@@ -9,6 +9,12 @@ variable "account_name" {
   description = "Name of the Cloudflare account."
 }
 
+variable "turbo_cache_worker_name" {
+  type        = string
+  description = "Name of the Turborepo cache worker."
+  default     = "turborepo-cache"
+}
+
 variable "turbo_token" {
   type        = string
   sensitive   = true
