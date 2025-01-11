@@ -1,5 +1,7 @@
 {
-    "recommendations": [
-        "gamunu.opentofu"
-    ]
+  "recommendations": [
+    "gamunu.opentofu",
+    "github.vscode-github-actions",
+    "esbenp.prettier-vscode"
+  ]
 }
