@@ -8,3 +8,9 @@ variable "account_name" {
   type        = string
   description = "Name of the Cloudflare account."
 }
+
+variable "turbo_token" {
+  type        = string
+  sensitive   = true
+  description = "Turborepo token to authenticate the provider."
+}

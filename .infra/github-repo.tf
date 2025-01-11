@@ -9,3 +9,15 @@ resource "github_repository" "monorepo" {
     prevent_destroy = true
   }
 }
+
+resource "github_actions_secret" "secret" {
+  for_each = {
+    "CLOUDFLARE_API_TOKEN" = var.cloudflare_api_token
+    "CLOUDFLARE_ACCOUNT_ID" = cloudflare_account.account.id
+    "TURBO_TOKEN" = var.turbo_token
+  }
+
+  repository      = github_repository.monorepo.name
+  secret_name     = each.key
+  plaintext_value = each.value
+}
