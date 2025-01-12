@@ -25,6 +25,7 @@ resource "github_actions_secret" "secret" {
 resource "github_actions_variable" "variable" {
   for_each = {
     "TURBO_CACHE_WORKER_NAME" = var.turbo_cache_worker_name
+    "TURBO_CACHE_BUCKET_NAME" = cloudflare_r2_bucket.turborepo_remote_cache.name
   }
 
   repository      = github_repository.monorepo.name
