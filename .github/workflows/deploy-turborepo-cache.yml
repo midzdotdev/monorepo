@@ -1,3 +1,5 @@
+name: Deploy Turborepo Cache Worker
+
 on:
   workflow_dispatch:
     inputs:
@@ -8,7 +10,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Deploy Turborepo Cache
+    name: Deploy Turborepo Cache Worker
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,6 +26,21 @@ jobs:
 
       - run: pnpm install
 
+      - env:
+          WRANGLER_TOML: |
+            name = "${{ vars.TURBO_CACHE_WORKER_NAME }}"
+            main = "src/index.ts"
+            compatibility_date = "2024-10-02"
+
+            [observability]
+            enabled = true
+
+            [[r2_buckets]]
+            binding = "R2_STORE"
+            bucket_name = "${{ vars.TURBO_CACHE_BUCKET_NAME}}"
+        run: |
+          echo "$WRANGLER_TOML" > wrangler.toml
+
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         env:
@@ -34,4 +51,4 @@ jobs:
           wranglerVersion: '3.50.0'
           secrets: |
             TURBO_TOKEN
-          command: deploy --minify --name=${{ vars.TURBO_CACHE_WORKER_NAME }}
+          command: deploy --minify
