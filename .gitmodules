@@ -1,0 +1,3 @@
+[submodule "projects/lexi"]
+	path = projects/lexi
+	url = https://github.com/midzdotdev/lexi.git
