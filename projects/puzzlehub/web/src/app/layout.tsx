@@ -1,6 +1,6 @@
-import type { Metadata } from 'next'
-import { Galindo, Geist, Geist_Mono, Montserrat } from 'next/font/google'
 import './globals.css'
+
+import type { Metadata } from 'next'
 import { galindo, montserrat } from './fonts'
 import { ThemeProvider } from '@/components/theme-provider'
 import { ThemeToggle } from '@/components/theme-toggle'

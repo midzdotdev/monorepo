@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback, useMemo, useRef, useEffect } from 'react'
+import { useState, useCallback, useMemo, useEffect } from 'react'
 import { TangoValue, TangoConstraint } from '../types'
 import { eqPosition, Grid, GridPosition } from '@/lib/Grid'
 import { makeEmptyGrid } from '../utils'

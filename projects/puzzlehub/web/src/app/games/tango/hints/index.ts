@@ -1,5 +1,5 @@
-import { Grid, GridPosition, GridDirection } from '@/lib/Grid'
-import { TangoValue, TangoConstraint, TangoConstraintType } from '../types'
+import { Grid, GridPosition } from '@/lib/Grid'
+import { TangoValue, TangoConstraint } from '../types'
 import { getConstraintHint } from './constraint-based'
 import { getLineBalanceHint } from './line-balance'
 import { getConsecutiveCellsHint } from './consecutive'

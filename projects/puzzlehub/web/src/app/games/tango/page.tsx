@@ -3,67 +3,16 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { SquareEqual, SquareX, Sun, Moon, Lightbulb } from 'lucide-react'
+import { Lightbulb } from 'lucide-react'
 import { useTango } from './hooks/useTango'
 import { TangoGrid } from './components/TangoGrid'
 import { PUZZLES } from './puzzles'
-import { symbol } from './utils'
+import { formatText, symbol } from './utils'
 
 export const runtime = 'edge'
 
-export const formatText = (text: string) => {
-  const parts = text.split(/({sun}|{moon}|{equal}|{opposite})/g)
-
-  return (
-    <>
-      {parts.map((part, i) => {
-        switch (part) {
-          case '{sun}':
-            return (
-              <Sun
-                key={i}
-                className="inline text-yellow-500 align-text-top"
-                fill="currentColor"
-                size="1.25em"
-              />
-            )
-          case '{moon}':
-            return (
-              <Moon
-                key={i}
-                className="inline text-blue-500 align-text-top"
-                fill="currentColor"
-                size="1.25em"
-              />
-            )
-          case '{equal}':
-            return (
-              <SquareEqual
-                key={i}
-                className="inline text-gray-500 align-text-top"
-                size="1.25em"
-                fill="white"
-              />
-            )
-          case '{opposite}':
-            return (
-              <SquareX
-                key={i}
-                className="inline text-gray-500 align-text-top"
-                size="1.25em"
-                fill="white"
-              />
-            )
-          default:
-            return part
-        }
-      })}
-    </>
-  )
-}
-
 export default function TangoGame() {
-  const [currentPuzzleId, setCurrentPuzzleId] = useState<number>(1)
+  const [currentPuzzleId] = useState<number>(1)
 
   const tango = useTango()
 
@@ -72,6 +21,7 @@ export default function TangoGame() {
     if (!puzzle) return
 
     tango.set(puzzle.grid, puzzle.constraints)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPuzzleId])
 
   return (
