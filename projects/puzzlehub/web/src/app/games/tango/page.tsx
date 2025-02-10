@@ -9,6 +9,8 @@ import { TangoGrid } from './components/TangoGrid'
 import { PUZZLES } from './puzzles'
 import { symbol } from './utils'
 
+export const runtime = 'edge'
+
 export const formatText = (text: string) => {
   const parts = text.split(/({sun}|{moon}|{equal}|{opposite})/g)
 
