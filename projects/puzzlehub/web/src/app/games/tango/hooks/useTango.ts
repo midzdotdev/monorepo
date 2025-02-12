@@ -121,7 +121,7 @@ export function useTango() {
         return
       }
 
-      const newGrid = Grid.setCell(Grid.clone(grid), hint.position, hint.value)
+      const newGrid = Grid.setCell(grid, hint.position, hint.value)
 
       setGrid(newGrid)
       setMoveHistory((history) => [...history, newGrid])

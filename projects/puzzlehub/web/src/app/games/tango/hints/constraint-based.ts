@@ -1,5 +1,5 @@
-import { Grid, GridDirection } from '@/lib/Grid'
-import { TangoValue, TangoConstraint, TangoConstraintType } from '../types'
+import { Grid } from '@/lib/Grid'
+import { TangoValue, TangoConstraint } from '../types'
 import { isValidMove } from '../checks'
 import { symbol } from '../utils'
 import { TangoHint } from '../hints'
@@ -61,71 +61,72 @@ export const getConstraintHint = (
 }
 
 if (import.meta.vitest) {
-  const { describe, it, expect } = import.meta.vitest
+  const { it, expect } = import.meta.vitest
 
-  describe('checkConstraintBasedHints', () => {
-    it('should find hint for equal constraint', () => {
-      const grid: Grid<TangoValue> = [
-        [1, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-      ]
-      const constraints: TangoConstraint[] = [
-        {
-          type: 'equal' as TangoConstraintType,
-          row: 0,
-          col: 0,
-          direction: 'row' as GridDirection,
-        },
-      ]
+  it('should find hint for equal constraint', () => {
+    const grid: Grid<TangoValue> = [
+      [1, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+    ]
 
-      const hint = getConstraintHint(grid, constraints)
-      expect(hint).not.toBeNull()
-      expect(hint?.position).toEqual({ row: 0, col: 1 })
-      expect(hint?.value).toBe(1)
-    })
+    const constraints: TangoConstraint[] = [
+      {
+        type: 'equal',
+        row: 0,
+        col: 0,
+        direction: 'row',
+      },
+    ]
 
-    it('should find hint for different constraint', () => {
-      const grid: Grid<TangoValue> = [
-        [1, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-      ]
-      const constraints: TangoConstraint[] = [
-        {
-          type: 'opposite' as TangoConstraintType,
-          row: 0,
-          col: 0,
-          direction: 'row' as GridDirection,
-        },
-      ]
+    const hint = getConstraintHint(grid, constraints)
+    expect(hint).not.toBeNull()
+    expect(hint?.position).toEqual({ row: 0, col: 1 })
+    expect(hint?.value).toBe(1)
+  })
 
-      const hint = getConstraintHint(grid, constraints)
-      expect(hint).not.toBeNull()
-      expect(hint?.position).toEqual({ row: 0, col: 1 })
-      expect(hint?.value).toBe(2)
-    })
+  it('should find hint for different constraint', () => {
+    const grid: Grid<TangoValue> = [
+      [1, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+    ]
 
-    it('should return null when no constraint-based hints available', () => {
-      const grid: Grid<TangoValue> = [
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-      ]
-      const constraints: TangoConstraint[] = [
-        {
-          type: 'equal' as TangoConstraintType,
-          row: 0,
-          col: 0,
-          direction: 'row' as GridDirection,
-        },
-      ]
+    const constraints: TangoConstraint[] = [
+      {
+        type: 'opposite',
+        row: 0,
+        col: 0,
+        direction: 'row',
+      },
+    ]
 
-      const hint = getConstraintHint(grid, constraints)
-      expect(hint).toBeNull()
-    })
+    const hint = getConstraintHint(grid, constraints)
+    expect(hint).not.toBeNull()
+    expect(hint?.position).toEqual({ row: 0, col: 1 })
+    expect(hint?.value).toBe(2)
+  })
+
+  it('should return null when no constraint-based hints available', () => {
+    const grid: Grid<TangoValue> = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+    ]
+
+    const constraints: TangoConstraint[] = [
+      {
+        type: 'equal',
+        row: 0,
+        col: 0,
+        direction: 'row',
+      },
+    ]
+
+    const hint = getConstraintHint(grid, constraints)
+    expect(hint).toBeNull()
   })
 }

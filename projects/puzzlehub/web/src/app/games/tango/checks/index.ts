@@ -13,7 +13,7 @@ export const isCellValid = (
   constraints: TangoConstraint[],
   position: GridPosition
 ): boolean => {
-  if (checkCellConsecutiveCells(grid, position)) {
+  if (!checkCellConsecutiveCells(grid, position)) {
     return false
   }
 
@@ -73,9 +73,7 @@ export const isValidMove = (
   constraints: TangoConstraint[],
   move: TangoMove
 ): boolean => {
-  const clonedGrid = Grid.clone(grid)
+  const newGrid = Grid.setCell(grid, move.position, move.value)
 
-  Grid.setCell(clonedGrid, move.position, move.value)
-
-  return isCellValid(clonedGrid, constraints, move.position)
+  return isCellValid(newGrid, constraints, move.position)
 }

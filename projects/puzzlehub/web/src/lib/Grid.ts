@@ -30,9 +30,6 @@ export const getLineCellPosition = (
 }
 
 export namespace Grid {
-  export const clone = <TCell>(grid: Grid<TCell>): Grid<TCell> =>
-    grid.map((row) => [...row])
-
   export const filled = <TCell>(size: number, cell: TCell): Grid<TCell> => {
     return Array(size)
       .fill(null)
