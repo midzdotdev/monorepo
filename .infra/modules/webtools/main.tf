@@ -13,7 +13,7 @@ variable "domain" {
 variable "github_repo" {
   type = object({
     owner = string
-    name = string
+    name  = string
   })
 }
 

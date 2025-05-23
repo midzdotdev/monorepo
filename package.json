@@ -3,12 +3,14 @@
   "private": true,
   "pkgx": "tofu@1.9.0 git@2.48.0 gh@2.65.0",
   "scripts": {
-    "format": "biome check --write",
-    "lint": "biome check"
+    "format": "biome check --write && tofu fmt -recursive .infra",
+    "lint": "biome check && tofu fmt -check -recursive .infra",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@dotenvx/dotenvx": "^1.32.1",
+    "husky": "^9.1.7",
     "turbo": "^2.3.3",
     "typescript": "5.8.3"
   },

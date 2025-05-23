@@ -12,9 +12,9 @@ resource "github_repository" "monorepo" {
 
 resource "github_actions_secret" "secret" {
   for_each = {
-    "CLOUDFLARE_API_TOKEN" = var.cloudflare_api_token
+    "CLOUDFLARE_API_TOKEN"  = var.cloudflare_api_token
     "CLOUDFLARE_ACCOUNT_ID" = cloudflare_account.account.id
-    "TURBO_TOKEN" = var.turbo_token
+    "TURBO_TOKEN"           = var.turbo_token
   }
 
   repository      = github_repository.monorepo.name
@@ -28,7 +28,7 @@ resource "github_actions_variable" "variable" {
     "TURBO_CACHE_BUCKET_NAME" = cloudflare_r2_bucket.turborepo_remote_cache.name
   }
 
-  repository      = github_repository.monorepo.name
-  variable_name   = each.key
-  value           = each.value
+  repository    = github_repository.monorepo.name
+  variable_name = each.key
+  value         = each.value
 }
