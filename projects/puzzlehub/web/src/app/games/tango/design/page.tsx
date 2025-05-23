@@ -1,23 +1,23 @@
 'use client'
 
-import { useState, useCallback, useMemo } from 'react'
-import { Button } from '@/components/ui/button'
 import { TangoGrid } from '@/components/tango/TangoGrid'
-import { TangoConstraint, TangoValue } from '@/lib/tango/types'
-import { eqGridPosition, Grid, GridPosition } from '@/lib/grid'
+import { Button } from '@/components/ui/button'
+import { Grid, type GridPosition, eqGridPosition } from '@/lib/grid'
+import { type SolveResult, solve } from '@/lib/tango/solve'
+import type { TangoConstraint, TangoValue } from '@/lib/tango/types'
+import { listViolations } from '@/lib/tango/violations'
+import { cn } from '@/lib/utils'
 import {
-  Sun,
-  Moon,
-  SquareEqual,
-  SquareX,
   AlertCircle,
   CheckCircle2,
   CircleDashed,
   Delete,
+  Moon,
+  SquareEqual,
+  SquareX,
+  Sun,
 } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { listViolations } from '@/lib/tango/violations'
-import { solve, SolveResult } from '@/lib/tango/solve'
+import { useCallback, useMemo, useState } from 'react'
 
 export const runtime = 'edge'
 

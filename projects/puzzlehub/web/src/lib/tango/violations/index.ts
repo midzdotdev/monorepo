@@ -1,9 +1,9 @@
-import { Grid, GridPosition } from '@/lib/grid'
-import { TangoValue, TangoConstraint } from '../types'
+import type { Grid, GridPosition } from '@/lib/grid'
+import type { TangoConstraint, TangoValue } from '../types'
 
-import { checkGridConstraints } from './constraints'
 import { checkGridLinesBalance } from './balanced-lines'
 import { checkGridConsecutiveCells } from './consecutive-cells'
+import { checkGridConstraints } from './constraints'
 
 export interface TangoViolation {
   cells: GridPosition[]

@@ -1,8 +1,8 @@
-import { getLineCellPosition, Grid } from '@/lib/grid'
-import { TangoValue } from '../types'
+import { Grid, getLineCellPosition } from '@/lib/grid'
+import type { TangoHint } from '.'
 import { symbol } from '../rules'
-import { TangoHint } from '.'
-import { LineCellValue } from './__internal'
+import { TangoValue } from '../types'
+import type { LineCellValue } from './__internal'
 
 /**
  * Example: `[1, 0, 1, 0]` must become `[1, 2, 1, 0]`
@@ -41,9 +41,13 @@ const getLineTripletHint = (
       continue
 
     // The above means the empty cell will always be found
-    const emptyCell = cells.find((x) => x.value === 0)!
+    const emptyCell = cells.find((x) => x.value === 0)
 
-    const nonEmptyValue = nonEmptyCells[0]!.value
+    if (!emptyCell) {
+      throw new Error('Incorrect state: no empty cell found')
+    }
+
+    const nonEmptyValue = nonEmptyCells[0].value
 
     return {
       cellIndex: emptyCell.cellIndex,

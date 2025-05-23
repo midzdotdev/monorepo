@@ -1,5 +1,5 @@
-import { Grid } from '@/lib/grid'
-import { TangoPuzzle, TangoValue } from '@/lib/tango/types'
+import type { Grid } from '@/lib/grid'
+import type { TangoPuzzle, TangoValue } from '@/lib/tango/types'
 
 interface UniquePuzzleFixture extends TangoPuzzle {
   solution: Grid<TangoValue>

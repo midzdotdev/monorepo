@@ -22,7 +22,11 @@ export const AnimatedClock = (
       strokeLinejoin="round"
       {...props}
     >
-      <circle cx="12" cy="12" r="10"></circle>
+      <title>
+        {minutes} minutes, {seconds} seconds
+      </title>
+
+      <circle cx="12" cy="12" r="10" />
 
       <line
         x1="12"

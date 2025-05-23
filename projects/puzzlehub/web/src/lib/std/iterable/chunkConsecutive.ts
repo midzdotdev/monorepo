@@ -14,7 +14,8 @@ export const chunkConsecutive = <T>(
       return [...chunks.slice(0, -1), [...lastChunk, item]]
     }
 
-    return [...chunks, [item]]
+    chunks.push([item])
+    return chunks
   }, [])
 
 if (import.meta.vitest) {

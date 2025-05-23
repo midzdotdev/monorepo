@@ -1,7 +1,7 @@
-import { Grid } from '@/lib/grid'
-import { TangoConstraint, TangoValue } from '../types'
-import { solveTangoBruteForce } from './brute-force'
+import type { Grid } from '@/lib/grid'
 import { take } from '@/lib/std/iterable'
+import type { TangoConstraint, TangoValue } from '../types'
+import { solveTangoBruteForce } from './brute-force'
 
 export type SolveResult =
   | {

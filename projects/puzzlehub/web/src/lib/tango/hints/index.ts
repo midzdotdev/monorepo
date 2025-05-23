@@ -1,16 +1,16 @@
-import { Grid, GridPosition } from '@/lib/grid'
-import { TangoValue, TangoConstraint } from '../types'
+import type { Grid, GridPosition } from '@/lib/grid'
+import type { TangoConstraint, TangoValue } from '../types'
 
-import { getConstraintsHint } from './constraint-based'
-import { getBalancedLinesHint } from './balanced-lines'
-import { getConsecutiveCellsHint } from './consecutive'
+import { first } from '@/lib/std/iterable'
 import { uniquePuzzles } from '../__tests__/fixtures/puzzles/unique'
-import { applyHint } from '../solve/hints'
 import { isTangoGridSolved } from '../check-completion'
 import { formatPuzzle } from '../format'
-import { getFallbackHint } from './fallback'
-import { first } from '@/lib/std/iterable'
 import { solveTangoBruteForce } from '../solve/brute-force'
+import { applyHint } from '../solve/hints'
+import { getBalancedLinesHint } from './balanced-lines'
+import { getConsecutiveCellsHint } from './consecutive'
+import { getConstraintsHint } from './constraint-based'
+import { getFallbackHint } from './fallback'
 import { getIncorrectCellHint } from './incorrect-cell'
 
 export interface TangoHint {
@@ -51,7 +51,12 @@ if (import.meta.vitest) {
       let workingGrid = grid
 
       while (!isTangoGridSolved(workingGrid, constraints)) {
-        const solution = first(solveTangoBruteForce(workingGrid, constraints))!
+        const solution = first(solveTangoBruteForce(workingGrid, constraints))
+
+        if (!solution) {
+          throw new Error('Expected solution to be available for puzzle')
+        }
+
         const hint = getHint(workingGrid, constraints, solution)
 
         if (!hint) {

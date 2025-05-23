@@ -1,7 +1,7 @@
 import { Grid } from '@/lib/grid'
-import { TangoValue, TangoConstraint } from '../types'
-import { TangoHint } from '.'
+import type { TangoHint } from '.'
 import { symbol } from '../rules'
+import type { TangoConstraint, TangoValue } from '../types'
 
 export const getConstraintsHint = (
   grid: Grid<TangoValue>,
@@ -23,8 +23,8 @@ export const getConstraintsHint = (
       value: Grid.getCellValue(grid, pos),
     }))
 
-    const filledCell = cells.find((x) => x.value !== 0)!
-    const emptyCell = cells.find((x) => x.value === 0)!
+    const filledCell = cells.find((x) => x.value !== 0)
+    const emptyCell = cells.find((x) => x.value === 0)
 
     if (!filledCell || !emptyCell) {
       continue

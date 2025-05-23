@@ -1,8 +1,8 @@
-import { getLineCellPosition, Grid } from '@/lib/grid'
-import { TangoValue } from '../types'
+import { Grid, getLineCellPosition } from '@/lib/grid'
 import { chunkConsecutive } from '@/lib/std/iterable/chunkConsecutive'
-import { TangoViolation } from '.'
+import type { TangoViolation } from '.'
 import { MAX_CONSECUTIVE, TANGO_RULES } from '../rules'
+import type { TangoValue } from '../types'
 
 function* checkLineConsecutiveCells(values: TangoValue[]): Iterable<number[]> {
   const consecutiveCells = chunkConsecutive(
@@ -11,7 +11,7 @@ function* checkLineConsecutiveCells(values: TangoValue[]): Iterable<number[]> {
       cellIndex,
     })),
     (lastChunk, item) => lastChunk.value === item.value
-  ).filter((chunk) => chunk[0]!.value !== 0)
+  ).filter((chunk) => chunk[0]?.value !== 0)
 
   for (const chunk of consecutiveCells) {
     if (chunk.length > MAX_CONSECUTIVE) {

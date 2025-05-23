@@ -1,7 +1,7 @@
-import { getLineCellPosition, Grid } from '@/lib/grid'
-import { nonEmptyValues, TANGO_RULES } from '../rules'
-import { TangoValue } from '../types'
-import { TangoViolation } from '.'
+import { Grid, getLineCellPosition } from '@/lib/grid'
+import type { TangoViolation } from '.'
+import { TANGO_RULES, nonEmptyValues } from '../rules'
+import type { TangoValue } from '../types'
 
 function* checkLineBalance(values: TangoValue[]): Iterable<number[]> {
   const limit = values.length / 2

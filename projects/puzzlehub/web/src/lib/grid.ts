@@ -24,9 +24,9 @@ export const getLineCellPosition = (
 ): GridPosition => {
   if (direction === 'row') {
     return { row: lineIndex, col: cellIndex }
-  } else {
-    return { row: cellIndex, col: lineIndex }
   }
+
+  return { row: cellIndex, col: lineIndex }
 }
 
 export namespace Grid {

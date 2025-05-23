@@ -1,6 +1,6 @@
 import { Grid } from '@/lib/grid'
-import { TangoConstraint, TangoValue } from './types'
 import { uniquePuzzles } from './__tests__/fixtures/puzzles/unique'
+import type { TangoConstraint, TangoValue } from './types'
 
 export const formatPuzzle = (
   grid: Grid<TangoValue>,
@@ -12,7 +12,7 @@ export const formatPuzzle = (
   // Draw top border
   str += '┌'
   for (let col = 0; col < gridSize; col++) {
-    str += '───' + (col < gridSize - 1 ? '┬' : '┐')
+    str += `───${col < gridSize - 1 ? '┬' : '┐'}`
   }
   str += '\n'
 
@@ -63,7 +63,7 @@ export const formatPuzzle = (
   // Draw bottom border
   str += '└'
   for (let col = 0; col < gridSize; col++) {
-    str += '───' + (col < gridSize - 1 ? '┴' : '┘')
+    str += `───${col < gridSize - 1 ? '┴' : '┘'}`
   }
   str += '\n'
 

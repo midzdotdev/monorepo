@@ -1,4 +1,4 @@
-import { Grid, GridLineDirection, GridPosition } from '@/lib/grid'
+import type { Grid, GridLineDirection, GridPosition } from '@/lib/grid'
 
 export type TangoValue = 0 | 1 | 2
 

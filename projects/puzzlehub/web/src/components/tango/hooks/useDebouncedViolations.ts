@@ -1,5 +1,5 @@
 import { usePrevious } from '@/hooks/usePrevious'
-import { TangoViolation } from '@/lib/tango/violations'
+import type { TangoViolation } from '@/lib/tango/violations'
 import { useDebounce } from '@uidotdev/usehooks'
 
 const VIOLATIONS_DEBOUNCE_MS = 1000

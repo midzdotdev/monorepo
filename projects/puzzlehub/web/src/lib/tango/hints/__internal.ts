@@ -1,4 +1,4 @@
-import { TangoValue } from '../types'
+import type { TangoValue } from '../types'
 
 export type LineCellValue<TValue extends TangoValue = TangoValue> = {
   cellIndex: number

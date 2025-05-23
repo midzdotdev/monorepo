@@ -1,8 +1,8 @@
 import { Grid } from '@/lib/grid'
-import { TangoValue, TangoConstraint } from '../types'
+import type { TangoViolation } from '.'
 import { linePositions } from '../__tests__/utils'
-import { TangoViolation } from '.'
 import { TANGO_RULES } from '../rules'
+import type { TangoConstraint, TangoValue } from '../types'
 
 export function* checkGridConstraints(
   grid: Grid<TangoValue>,
@@ -65,24 +65,22 @@ if (import.meta.vitest) {
     },
     {
       name: 'finds no violations when constraints are satisfied',
-      // prettier-ignore
       grid: [
-          [1, 1, 0, 0],
-          [0, 0, 0, 0],
-          [0, 0, 0, 2],
-          [0, 0, 0, 1],
-        ],
+        [1, 1, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 2],
+        [0, 0, 0, 1],
+      ],
       violations: [],
     },
     {
       name: 'finds violations',
-      // prettier-ignore
       grid: [
-          [1, 2, 0, 0],
-          [0, 0, 0, 0],
-          [0, 0, 0, 2],
-          [0, 0, 0, 2],
-        ],
+        [1, 2, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 2],
+        [0, 0, 0, 2],
+      ],
       violations: [
         {
           cells: linePositions('row', 0, 0, 1),

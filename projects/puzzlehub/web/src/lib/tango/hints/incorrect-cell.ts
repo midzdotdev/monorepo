@@ -1,5 +1,5 @@
 import { Grid } from '@/lib/grid'
-import { TangoHint } from '.'
+import type { TangoHint } from '.'
 import { TangoValue } from '../types'
 
 export const getIncorrectCellHint = (
@@ -25,6 +25,6 @@ export const getIncorrectCellHint = (
   return {
     position: incorrectPosition,
     value: TangoValue.NonEmpty.flip(incorrectValue),
-    reason: `This cell is incorrect.`,
+    reason: 'This cell is incorrect.',
   }
 }

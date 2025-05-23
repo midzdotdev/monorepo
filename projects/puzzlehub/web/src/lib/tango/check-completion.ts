@@ -1,5 +1,5 @@
-import { Grid } from '@/lib/grid'
-import { TangoConstraint, TangoValue } from './types'
+import type { Grid } from '@/lib/grid'
+import type { TangoConstraint, TangoValue } from './types'
 import { listViolations } from './violations'
 
 export const isTangoGridFilled = (grid: Grid<TangoValue>): boolean => {
