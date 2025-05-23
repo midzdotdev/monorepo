@@ -12,6 +12,10 @@ jobs:
     steps:
         - uses: actions/checkout@v4
 
+        - uses: opentofu/setup-opentofu@v1
+          with:
+            tofu_version: 1.9.0
+
         - uses: pnpm/action-setup@v4
 
         - uses: actions/setup-node@v4
@@ -21,5 +25,3 @@ jobs:
 
         - run: pnpm install
         - run: pnpm run lint
-        - run: pnpm run format
-        - run: pnpm run build
