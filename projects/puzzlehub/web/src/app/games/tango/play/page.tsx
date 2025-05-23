@@ -1,20 +1,10 @@
 'use client'
 
-import { useState, useEffect, useMemo, useCallback } from 'react'
-import { Button } from '@/components/ui/button'
-import { HelpCircle, Lightbulb } from 'lucide-react'
+import { AnimatedClock } from '@/components/AnalogueClock'
+import { Kbd } from '@/components/Kbd'
 import { TangoGrid } from '@/components/tango/TangoGrid'
-import { uniquePuzzles } from '@/lib/tango/__tests__/fixtures/puzzles/unique'
 import { formatText } from '@/components/tango/utils'
-import { TANGO_RULES } from '@/lib/tango/rules'
-import Link from 'next/link'
-import { TangoHint, getHint } from '@/lib/tango/hints'
-import { AnimatePresence, motion } from 'motion/react'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
+import { Button } from '@/components/ui/button'
 import {
   Sheet,
   SheetContent,
@@ -23,17 +13,26 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
-import { Kbd } from '@/components/Kbd'
-import { useWindowSize } from '@uidotdev/usehooks'
-import { eqGridPosition, Grid, GridPosition } from '@/lib/grid'
-import { AnimatedClock } from '@/components/AnalogueClock'
-import { TangoPuzzle } from '@/lib/tango/types'
-import { solveTangoBruteForce } from '@/lib/tango/solve/brute-force'
-import { TangoValue } from '@/lib/tango/types'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
+import { Grid, type GridPosition, eqGridPosition } from '@/lib/grid'
 import { first } from '@/lib/std/iterable'
-import { listViolations } from '@/lib/tango/violations'
-import { useDebouncedViolations } from '../../../../components/tango/hooks/useDebouncedViolations'
+import { uniquePuzzles } from '@/lib/tango/__tests__/fixtures/puzzles/unique'
 import { isTangoGridFilled } from '@/lib/tango/check-completion'
+import { type TangoHint, getHint } from '@/lib/tango/hints'
+import { TANGO_RULES } from '@/lib/tango/rules'
+import { solveTangoBruteForce } from '@/lib/tango/solve/brute-force'
+import type { TangoPuzzle, TangoValue } from '@/lib/tango/types'
+import { listViolations } from '@/lib/tango/violations'
+import { useWindowSize } from '@uidotdev/usehooks'
+import { HelpCircle, Lightbulb } from 'lucide-react'
+import { AnimatePresence, motion } from 'motion/react'
+import Link from 'next/link'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useDebouncedViolations } from '../../../../components/tango/hooks/useDebouncedViolations'
 
 export const runtime = 'edge'
 
@@ -61,7 +60,7 @@ export default function PlayTango() {
   )
 
   const solution = useMemo(() => {
-    return first(solveTangoBruteForce(puzzle.grid, puzzle.constraints))!
+    return first(solveTangoBruteForce(puzzle.grid, puzzle.constraints))
   }, [puzzle])
 
   const allViolations = useMemo(
@@ -141,6 +140,8 @@ export default function PlayTango() {
   )
 
   const showHint = () => {
+    if (!solution) return
+
     const hint = getHint(currentGrid, puzzle.constraints, solution)
 
     setHint(hint)

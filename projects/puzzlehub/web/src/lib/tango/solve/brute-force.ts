@@ -1,9 +1,9 @@
-import { TangoConstraint, TangoMove, TangoValue } from '../types'
-import { listViolations } from '../violations'
-import { nonEmptyValues } from '../rules'
-import { uniquePuzzles } from '../__tests__/fixtures/puzzles/unique'
-import { first, take } from '@/lib/std/iterable'
 import { Grid } from '@/lib/grid'
+import { first, take } from '@/lib/std/iterable'
+import { uniquePuzzles } from '../__tests__/fixtures/puzzles/unique'
+import { nonEmptyValues } from '../rules'
+import { type TangoConstraint, type TangoMove, TangoValue } from '../types'
+import { listViolations } from '../violations'
 
 export function* solveTangoBruteForce(
   grid: Grid<TangoValue>,

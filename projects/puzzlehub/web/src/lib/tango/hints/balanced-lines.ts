@@ -1,8 +1,8 @@
-import { getLineCellPosition, Grid } from '@/lib/grid'
+import { Grid, getLineCellPosition } from '@/lib/grid'
+import type { TangoHint } from '.'
+import { TANGO_RULES, nonEmptyValues } from '../rules'
 import { TangoValue } from '../types'
-import { TangoHint } from '.'
-import { LineCellValue } from './__internal'
-import { nonEmptyValues, TANGO_RULES } from '../rules'
+import type { LineCellValue } from './__internal'
 
 const getLineBalancedLinesHint = (
   values: TangoValue[]

@@ -1,7 +1,7 @@
-import { Moon, SquareEqual, SquareX, Sun } from 'lucide-react'
+import { Grid, type GridPosition, eqGridPosition } from '@/lib/grid'
+import type { TangoConstraint, TangoValue } from '@/lib/tango/types'
 import { cn } from '@/lib/utils'
-import { TangoValue, TangoConstraint } from '@/lib/tango/types'
-import { eqGridPosition, Grid, GridPosition } from '@/lib/grid'
+import { Moon, SquareEqual, SquareX, Sun } from 'lucide-react'
 
 export function TangoGrid(props: {
   grid: Grid<TangoValue>
@@ -22,9 +22,9 @@ export function TangoGrid(props: {
         gridTemplateColumns: `repeat(${props.grid[0].length}, 1fr)`,
       }}
     >
-      {props.constraints.map((constraint, index) => (
+      {props.constraints.map((constraint) => (
         <div
-          key={index}
+          key={`${constraint.direction}-${constraint.row}-${constraint.col}`}
           style={{
             gridRow:
               constraint.direction === 'col'
@@ -82,13 +82,14 @@ export function TangoGrid(props: {
 
         return (
           <button
+            type="button"
             key={`${position.row}-${position.col}`}
             style={{
               gridRow: position.row + 1,
               gridColumn: position.col + 1,
             }}
             className={cn(
-              `aspect-square border-2 box-content rounded-lg flex items-center justify-center hover:bg-accent/20 cursor-pointer transition-colors`,
+              'aspect-square border-2 box-content rounded-lg flex items-center justify-center hover:bg-accent/20 cursor-pointer transition-colors',
               cell === 0 ? 'border-border' : '',
               cell === 1 &&
                 !hasViolation &&

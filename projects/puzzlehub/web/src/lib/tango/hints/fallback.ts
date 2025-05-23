@@ -1,7 +1,7 @@
 import { Grid } from '@/lib/grid'
-import { TangoValue } from '../types'
-import { TangoHint } from '.'
+import type { TangoHint } from '.'
 import { symbol } from '../rules'
+import type { TangoValue } from '../types'
 
 /**
  * In the rare case that the other hints cannot determine a cell,

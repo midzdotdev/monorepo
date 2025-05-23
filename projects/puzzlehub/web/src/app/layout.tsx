@@ -1,12 +1,12 @@
 import './globals.css'
 
-import type { Metadata, Viewport } from 'next'
-import { galindo, montserrat } from './fonts'
+import PuzzleHubLogo from '@/../public/puzzlehub-logo.svg'
 import { ThemeProvider } from '@/components/theme-provider'
 import { ThemeToggle } from '@/components/theme-toggle'
-import PuzzleHubLogo from '@/../public/puzzlehub-logo.svg'
-import Image from 'next/image'
 import { TooltipProvider } from '@/components/ui/tooltip'
+import type { Metadata, Viewport } from 'next'
+import Image from 'next/image'
+import { galindo, montserrat } from './fonts'
 
 export const metadata: Metadata = {
   title: 'PuzzleHub',
