@@ -3,5 +3,5 @@ resource "cloudflare_zone" "zone" {
     "midz.dev",
   ])
   account_id = cloudflare_account.account.id
-  zone = each.value
+  zone       = each.value
 }
