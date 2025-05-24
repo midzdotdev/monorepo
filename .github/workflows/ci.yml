@@ -25,3 +25,4 @@ jobs:
 
         - run: pnpm install
         - run: pnpm run lint
+        - run: pnpm -r run build
