@@ -4,12 +4,12 @@
   "files": {
     "ignoreUnknown": false,
     "ignore": [
-      "**/node_modules",
-      "**/dist",
-      ".turbo",
-      ".infra",
-      "**/.next",
-      "**/drizzle/meta"
+      "**/node_modules/**",
+      "**/dist/**",
+      ".turbo/**",
+      ".infra/**",
+      "**/.next/**",
+      "**/drizzle/meta/**"
     ]
   },
   "formatter": {
